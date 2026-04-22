@@ -1,0 +1,59 @@
+{
+  "school": "spell_power:arcane",
+  "range": 0.0,
+  "tier": 3,
+  "learn": {},
+  "active": {
+    "scroll": {}
+  },
+  "release": {
+    "animation": {
+      "id": "spell_engine:one_handed_area_release"
+    },
+    "sound": {
+      "id": "minecraft:entity.enderman.teleport",
+      "volume": 0.7
+    },
+    "particles": [
+      {
+        "particle_id": "spell_engine:magic_arcane_burst",
+        "shape": "SPHERE",
+        "origin": "CENTER",
+        "count": 6.0,
+        "min_speed": 0.04,
+        "max_speed": 0.14,
+        "scale": 1.0,
+        "color_rgba": 2974679039
+      },
+      {
+        "particle_id": "spell_engine:magic_arcane_ascend",
+        "shape": "SPHERE",
+        "origin": "CENTER",
+        "count": 3.0,
+        "min_speed": 0.02,
+        "max_speed": 0.08,
+        "scale": 0.9,
+        "max_age": 0.9,
+        "color_rgba": 2974679039
+      }
+    ]
+  },
+  "impacts": [
+    {
+      "action": {
+        "type": "CUSTOM",
+        "apply_to_caster": true,
+        "custom": {
+          "intent": "BENEFICIAL",
+          "handler": "monkmod:ethereal_step"
+        }
+      }
+    }
+  ],
+  "cost": {
+    "exhaust": 0.0,
+    "cooldown": {
+      "duration": 4.0
+    }
+  }
+}

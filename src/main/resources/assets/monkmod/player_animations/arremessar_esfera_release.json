@@ -1,0 +1,25 @@
+{
+  "name": "arremessar_esfera_release",
+  "author": "Gabriel",
+  "description": "Arremesso - release (estouro do braço pra frente)",
+  "emote": {
+    "isLoop": "false",
+    "returnTick": 0,
+    "beginTick": 0,
+    "endTick": 8,
+    "stopTick": 12,
+    "degrees": false,
+    "moves": [
+      { "tick": 0, "easing": "EASEINOUTQUAD", "turn": 0, "rightArm": { "pitch": -1.7453292519943295, "yaw": 0.0, "roll": 0.0 } },
+      { "tick": 0, "easing": "EASEINOUTQUAD", "turn": 0, "leftArm": { "pitch": -0.18174445113574833, "yaw": 0.05604810733514431, "roll": -0.2558640466118923 } },
+
+      { "tick": 2, "easing": "EASEINOUTQUAD", "turn": 0, "rightArm": { "pitch": -0.35, "yaw": -0.05, "roll": -0.05 } },
+      { "tick": 2, "easing": "EASEINOUTQUAD", "turn": 0, "leftArm": { "pitch": -0.05, "yaw": 0.0, "roll": 0.05 } },
+
+      { "tick": 4, "easing": "EASEINOUTQUAD", "turn": 0, "rightArm": { "pitch": 0.15, "yaw": -0.08, "roll": -0.06 } },
+
+      { "tick": 8, "easing": "EASEINOUTQUAD", "turn": 0, "rightArm": { "pitch": 0.0, "yaw": 0.0, "roll": 0.0 } },
+      { "tick": 8, "easing": "EASEINOUTQUAD", "turn": 0, "leftArm": { "pitch": 0.0, "yaw": 0.0, "roll": 0.0 } }
+    ]
+  }
+}

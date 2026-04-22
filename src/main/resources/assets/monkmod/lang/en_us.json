@@ -1,0 +1,34 @@
+{
+  "item.monkmod.spell_book/monk": "Monk Spellbook",
+
+  "spell.monkmod.spirit_sphere_summon.name": "Summon Spiritual Sphere",
+  "spell.monkmod.soul_collect.name": "SOUL COLLECT",
+  "spell.monkmod.spiritual_absorption.name": "Spiritual Absorption",
+  "spell.monkmod.occult_impaction.name": "Psychic Impact",
+  "spell.monkmod.spirit_transfer.name": "Spirit Transfer",
+  "spell.monkmod.ethereal_step.name": "Ethereal Step",
+  "spell.monkmod.throw_spirit_sphere.name": "Throw Spiritual Sphere",
+
+  "spell.monkmod.spirit_sphere_summon.description": "Summons 1 Spiritual Sphere for {effect_duration} seconds, stacking up to 5 times.",
+  "spell.monkmod.soul_collect.description": "Instantly grants the maximum number of Spiritual Spheres. Grants 5 spheres normally, or 6 while using the Spiritual Gauntlet.",
+  "spell.monkmod.spiritual_absorption.description": "Drains enemies around the target, dealing low damage, healing the caster, and generating 1 Spiritual Sphere per enemy hit.",
+  "spell.monkmod.occult_impaction.description": "Consumes 1 Spiritual Sphere and deals {splash_damage} - {damage} damage to targets. Grants the Vigor Chakra effect for 4 seconds.",
+  "spell.monkmod.spirit_transfer.description": "Consumes 1 Spiritual Sphere and throws it at an ally, healing allies around the target and granting Vigor Chakra.",
+  "spell.monkmod.ethereal_step.description": "Consumes 2 Spiritual Spheres and teleports the user up to 7 blocks forward. Grants the Spiritual Concession effect for 4 seconds.",
+  "spell.monkmod.throw_spirit_sphere.description": "Throws up to 5 Spiritual Spheres, consuming 1 Spiritual Sphere per throw. Each sphere deals {damage} damage to enemies.",
+
+  "effect.monkmod.spiritual_spheres": "Spiritual Spheres",
+  "effect.monkmod.spiritual_spheres.description": "Each sphere increases Arcane Power, Spell Haste, and Attack Damage by 5%.",
+
+  "effect.monkmod.vigor_chakra": "Vigor Chakra",
+  "effect.monkmod.vigor_chakra.description": "Channels vital energy, granting a 30% chance to self-cast Vigor Barrier.",
+
+  "effect.monkmod.vigor_barrier": "Vigor Barrier",
+  "effect.monkmod.vigor_barrier.description": "Generates a temporary shield that scales with Arcane Power.",
+
+  "effect.monkmod.spiritual_concession": "Spiritual Concession",
+  "effect.monkmod.spiritual_concession.description": "Increases Attack Damage by 30% while active.",
+
+  "itemGroup.monkmod.monge": "Monk",
+  "item.monkmod.spiritual_gauntlet": "Spiritual Gauntlet"
+}

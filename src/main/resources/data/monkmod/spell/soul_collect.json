@@ -1,0 +1,87 @@
+{
+  "school": "spell_power:arcane",
+  "range": 0.0,
+  "tier": 1,
+  "learn": {},
+  "active": {
+    "cast": {
+      "duration": 0.3,
+      "animation": {
+        "id": "monkmod:invocar_esfera_charge"
+      },
+      "sound": {
+        "id": "spell_engine:generic_arcane_casting"
+      },
+      "particles": [
+        {
+          "particle_id": "spell_engine:magic_arcane_ascend",
+          "shape": "WIDE_PIPE",
+          "origin": "FEET",
+          "count": 2.5,
+          "min_speed": 0.02,
+          "max_speed": 0.06,
+          "follow_entity": true,
+          "scale": 0.9,
+          "color_rgba": 2974679039
+        }
+      ]
+    }
+  },
+  "release": {
+    "animation": {
+      "id": "forcemaster_rpg:burstcrack_release"
+    },
+    "particles": [
+      {
+        "particle_id": "spell_engine:area_effect_658",
+        "origin": "GROUND",
+        "shape": "SPHERE",
+        "count": 1.0,
+        "max_speed": 0.0,
+        "color_rgba": 2974679039
+      },
+      {
+        "particle_id": "spell_engine:magic_arcane_burst",
+        "origin": "CENTER",
+        "shape": "SPHERE",
+        "count": 5.0,
+        "min_speed": 0.05,
+        "max_speed": 0.14,
+        "scale": 1.0,
+        "color_rgba": 2974679039
+      },
+      {
+        "particle_id": "spell_engine:magic_arcane_float",
+        "origin": "CENTER",
+        "shape": "SPHERE",
+        "count": 2.0,
+        "min_speed": 0.01,
+        "max_speed": 0.04,
+        "scale": 0.85,
+        "max_age": 0.8,
+        "color_rgba": 2974679039
+      }
+    ],
+    "sound": {
+      "id": "forcemaster_rpg:asal_release",
+      "volume": 0.35
+    }
+  },
+  "impacts": [
+    {
+      "action": {
+        "type": "CUSTOM",
+        "custom": {
+          "intent": "HELPFUL",
+          "handler": "monkmod:soul_collect"
+        }
+      }
+    }
+  ],
+  "cost": {
+    "exhaust": 0.2,
+    "cooldown": {
+      "duration": 16.0
+    }
+  }
+}

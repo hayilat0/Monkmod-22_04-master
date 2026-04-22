@@ -1,0 +1,84 @@
+{
+  "school": "spell_power:arcane",
+  "range": 4.0,
+  "tier": 2,
+  "learn": {},
+  "active": {
+    "cast": {
+      "duration": 0.6,
+      "animation": {
+        "id": "spell_engine:one_handed_area_charge"
+      },
+      "sound": { "id": "spell_engine:generic_arcane_casting" },
+      "particles": [
+        {
+          "particle_id": "spell_engine:magic_arcane_ascend",
+          "shape": "WIDE_PIPE",
+          "origin": "FEET",
+          "count": 2.5,
+          "min_speed": 0.02,
+          "max_speed": 0.06,
+          "follow_entity": true,
+          "scale": 0.9,
+          "color_rgba": 2974679039
+        }
+      ]
+    }
+  },
+  "release": {
+    "animation": {
+      "id": "spell_engine:one_handed_area_release"
+    },
+    "particles": [
+      {
+        "particle_id": "spell_engine:area_effect_658",
+        "origin": "GROUND",
+        "shape": "SPHERE",
+        "count": 1.0,
+        "max_speed": 0.0,
+        "color_rgba": 2974679039
+      },
+      {
+        "particle_id": "spell_engine:magic_arcane_burst",
+        "origin": "CENTER",
+        "shape": "SPHERE",
+        "count": 6.0,
+        "min_speed": 0.05,
+        "max_speed": 0.16,
+        "scale": 1.0,
+        "color_rgba": 2974679039
+      },
+      {
+        "particle_id": "spell_engine:magic_arcane_ascend",
+        "origin": "CENTER",
+        "shape": "SPHERE",
+        "count": 3.0,
+        "min_speed": 0.02,
+        "max_speed": 0.08,
+        "scale": 0.9,
+        "max_age": 0.9,
+        "color_rgba": 2974679039
+      }
+    ],
+    "sound": { "id": "forcemaster_rpg:asal_release", "volume": 0.35 }
+  },
+  "target": {
+    "type": "AIM",
+    "aim": { "sticky": true }
+  },
+  "impacts": [
+    {
+      "action": {
+        "type": "CUSTOM",
+        "custom": {
+          "intent": "HARMFUL",
+          "handler": "monkmod:occult_impaction_effects"
+        }
+      }
+    }
+  ],
+  "cost": {
+    "exhaust": 0.2,
+    "cooldown": { "duration": 16.0 }
+  }
+}

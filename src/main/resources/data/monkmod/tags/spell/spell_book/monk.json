@@ -1,0 +1,20 @@
+{
+  "values": [
+    {
+      "id": "monkmod:occult_impaction",
+      "required": false
+    },
+    {
+      "id": "monkmod:spirit_transfer",
+      "required": false
+    },
+    {
+      "id": "monkmod:ethereal_step",
+      "required": false
+    },
+    {
+      "id": "monkmod:throw_spirit_sphere",
+      "required": false
+    }
+  ]
+}

@@ -1,0 +1,50 @@
+{
+	"schemaVersion": 1,
+	"id": "monkmod",
+	"version": "${version}",
+	"name": "monkmod",
+	"description": "This is an example description! Tell everyone what your mod is about!",
+	"authors": [
+		"Me!"
+	],
+	"contact": {
+		"homepage": "https://fabricmc.net/",
+		"sources": "https://github.com/FabricMC/fabric-example-mod"
+	},
+	"license": "CC0-1.0",
+	"icon": "assets/monkmod/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"net.gabriel.monk.Monkmod"
+		],
+		"client": [
+			"net.gabriel.monk.MonkmodClient"
+		],
+		"fabric-datagen": [
+			"net.gabriel.monk.MonkmodDataGenerator"
+		]
+	},
+	"mixins": [
+		"monkmod.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=0.18.4",
+		"minecraft": "~1.21.1",
+		"java": ">=21",
+		"fabric-api": "*",
+
+		"spell_engine": ">=1.9.0",
+		"spell_power": ">=1.4.6",
+		"tiny_config": "*",
+
+		"azurelibarmor": "*",
+		"more_rpg_classes": ">=2.5.18",
+
+		"forcemaster_rpg": ">=2.6.0"
+	},
+
+	"suggests": {
+		"better_combat": "*"
+	}
+}

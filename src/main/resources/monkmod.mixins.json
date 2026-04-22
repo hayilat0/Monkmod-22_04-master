@@ -1,0 +1,16 @@
+{
+	"required": true,
+	"minVersion": "0.8",
+	"package": "net.gabriel.monk.mixin",
+	"compatibilityLevel": "JAVA_21",
+	"mixins": [
+		"ExampleMixin",
+		"EntityIFramesAccessor"
+	],
+	"client": [
+		"SpellTooltipLineBreakMixin"
+	],
+	"injectors": {
+		"defaultRequire": 1
+	}
+}

@@ -1,0 +1,34 @@
+{
+  "item.monkmod.spell_book/monk": "Livro do Monge",
+
+  "spell.monkmod.spirit_sphere_summon.name": "Invocar Esfera Espiritual",
+  "spell.monkmod.soul_collect.name": "Zen",
+  "spell.monkmod.spiritual_absorption.name": "Absorção Espiritual",
+  "spell.monkmod.occult_impaction.name": "Impacto Psíquico",
+  "spell.monkmod.spirit_transfer.name": "Transferência de Espírito",
+  "spell.monkmod.ethereal_step.name": "Passo Etéreo",
+  "spell.monkmod.throw_spirit_sphere.name": "Arremessar Esfera Espiritual",
+
+  "spell.monkmod.spirit_sphere_summon.description": "Invoca 1 Esfera Espiritual por {effect_duration} segundos, acumulando até 5 vezes.",
+  "spell.monkmod.soul_collect.description": "Concede instantaneamente o número máximo de Esferas Espirituais. Concede 5 esferas normalmente, ou 6 ao usar a Manopla Espiritual.",
+  "spell.monkmod.spiritual_absorption.description": "Drena inimigos ao redor do alvo, causando dano baixo, curando o usuário e gerando 1 Esfera Espiritual por inimigo atingido.",
+  "spell.monkmod.occult_impaction.description": "Consome 1 Esfera Espiritual e causa {splash_damage} - {damage} de dano aos alvos.\nConcede o efeito Chakra do Vigor por 4 segundos.",
+  "spell.monkmod.spirit_transfer.description": "Consome 1 Esfera Espiritual e a arremessa em um aliado, curando aliados ao redor do alvo e concedendo Chakra do Vigor.",
+  "spell.monkmod.ethereal_step.description": "Consome 2 Esferas Espirituais e teletransporta o usuário até 7 blocos à frente.\nConcede o efeito Concessão Espiritual por 4 segundos.",
+  "spell.monkmod.throw_spirit_sphere.description": "Arremessa até 5 Esferas Espirituais, consumindo 1 Esfera Espiritual por arremesso.\nCada esfera causa {damage} de dano aos inimigos.",
+
+  "effect.monkmod.spiritual_spheres": "Esferas Espirituais",
+  "effect.monkmod.spiritual_spheres.description": "Concede Esferas Espirituais. Cada esfera aumenta Poder Arcano, Velocidade de Conjuração e Dano de Ataque em 5%.",
+
+  "effect.monkmod.vigor_chakra": "Chakra do Vigor",
+  "effect.monkmod.vigor_chakra.description": "Canaliza energia vital, concedendo 30% de chance de autoconjurar Barreira do Vigor.",
+
+  "effect.monkmod.vigor_barrier": "Barreira de Vigor",
+  "effect.monkmod.vigor_barrier.description": "Gera um escudo temporário (Absorção) que escala com Poder Arcano.",
+
+  "effect.monkmod.spiritual_concession": "Concessão Espiritual",
+  "effect.monkmod.spiritual_concession.description": "Aumenta o Dano de Ataque em 30% enquanto estiver ativo.",
+
+  "itemGroup.monkmod.monge": "Monge",
+  "item.monkmod.spiritual_gauntlet": "Manopla Espiritual"
+}

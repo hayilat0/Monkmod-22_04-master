@@ -1,0 +1,74 @@
+{
+	"name": "invocar_esfera_charge",
+	"author": "Gabriel (polido por Pabllo)",
+	"description": "Invocar esfera - levanta o braço com antecipação e leve torção do corpo",
+	"emote": {
+		"isLoop": "false",
+		"returnTick": 0,
+		"beginTick": 0,
+		"endTick": 6,
+		"stopTick": 10,
+		"degrees": true,
+		"moves": [
+			{
+				"tick": 0,
+				"easing": "InOutSine",
+				"turn": 0,
+				"head": { "pitch": 0, "yaw": 0, "roll": 0 },
+				"torso": { "pitch": 0, "yaw": 0, "roll": 0 },
+				"rightArm": { "pitch": 0, "yaw": 0, "roll": 0 },
+				"leftArm": { "pitch": 0, "yaw": 0, "roll": 0 },
+				"rightLeg": { "pitch": 0, "yaw": 0, "roll": 0 },
+				"leftLeg": { "pitch": 0, "yaw": 0, "roll": 0 }
+			},
+
+			{
+				"tick": 1,
+				"easing": "InOutSine",
+				"turn": 0,
+				"head": { "pitch": -6, "yaw": -2, "roll": 0 },
+				"torso": { "pitch": -4, "yaw": 4, "roll": -1 },
+				"rightArm": { "pitch": -12, "yaw": 6, "roll": -2 },
+				"leftArm": { "pitch": 6, "yaw": -6, "roll": 10 },
+				"rightLeg": { "pitch": 4, "yaw": 0, "roll": 4 },
+				"leftLeg": { "pitch": -4, "yaw": 0, "roll": -4 }
+			},
+
+			{
+				"tick": 3,
+				"easing": "InOutSine",
+				"turn": 0,
+				"head": { "pitch": -22, "yaw": -4, "roll": 2 },
+				"torso": { "pitch": 2, "yaw": 10, "roll": -2 },
+				"rightArm": { "pitch": -155, "yaw": 9, "roll": -14 },
+				"leftArm": { "pitch": -18, "yaw": -4, "roll": -12 },
+				"rightLeg": { "pitch": 8, "yaw": 0, "roll": 6 },
+				"leftLeg": { "pitch": -8, "yaw": 0, "roll": -6 }
+			},
+
+			{
+				"tick": 6,
+				"easing": "OutCubic",
+				"turn": 0,
+				"head": { "pitch": -30, "yaw": -5, "roll": 2 },
+				"torso": { "pitch": 5, "yaw": 12, "roll": -2 },
+				"rightArm": { "pitch": -165, "yaw": 6, "roll": -10 },
+				"leftArm": { "pitch": -25, "yaw": -5, "roll": -12 },
+				"rightLeg": { "pitch": 10, "yaw": 0, "roll": 7.5 },
+				"leftLeg": { "pitch": -10, "yaw": 0, "roll": -7.5 }
+			},
+
+			{
+				"tick": 10,
+				"easing": "InOutSine",
+				"turn": 0,
+				"head": { "pitch": 0, "yaw": 0, "roll": 0 },
+				"torso": { "pitch": 0, "yaw": 0, "roll": 0 },
+				"rightArm": { "pitch": 0, "yaw": 0, "roll": 0 },
+				"leftArm": { "pitch": 0, "yaw": 0, "roll": 0 },
+				"rightLeg": { "pitch": 0, "yaw": 0, "roll": 0 },
+				"leftLeg": { "pitch": 0, "yaw": 0, "roll": 0 }
+			}
+		]
+	}
+}
