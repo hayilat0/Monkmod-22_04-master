@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/handheld",
+  "textures": {
+    "layer0": "monkmod:item/diamond_battle_staff"
+  }
+}

@@ -30,5 +30,11 @@
   "effect.monkmod.spiritual_concession.description": "Increases Attack Damage by 30% while active.",
 
   "itemGroup.monkmod.monge": "Monk",
-  "item.monkmod.spiritual_gauntlet": "Spiritual Gauntlet"
+  "item.monkmod.spiritual_gauntlet": "Spiritual Gauntlet",
+  "item.monkmod.wooden_battle_staff": "Wooden Battle Staff",
+  "item.monkmod.stone_battle_staff": "Stone Battle Staff",
+  "item.monkmod.iron_battle_staff": "Iron Battle Staff",
+  "item.monkmod.golden_battle_staff": "Golden Battle Staff",
+  "item.monkmod.diamond_battle_staff": "Diamond Battle Staff",
+  "item.monkmod.netherite_battle_staff": "Netherite Battle Staff"
 }

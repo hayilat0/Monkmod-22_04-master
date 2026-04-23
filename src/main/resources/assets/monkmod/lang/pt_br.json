@@ -30,5 +30,11 @@
   "effect.monkmod.spiritual_concession.description": "Aumenta o Dano de Ataque em 30% enquanto estiver ativo.",
 
   "itemGroup.monkmod.monge": "Monge",
-  "item.monkmod.spiritual_gauntlet": "Manopla Espiritual"
+  "item.monkmod.spiritual_gauntlet": "Manopla Espiritual",
+  "item.monkmod.wooden_battle_staff": "Bastão de Batalha de Madeira",
+  "item.monkmod.stone_battle_staff": "Bastão de Batalha de Pedra",
+  "item.monkmod.iron_battle_staff": "Bastão de Batalha de Ferro",
+  "item.monkmod.golden_battle_staff": "Bastão de Batalha de Ouro",
+  "item.monkmod.diamond_battle_staff": "Bastão de Batalha de Diamante",
+  "item.monkmod.netherite_battle_staff": "Bastão de Batalha de Netherite"
 }
