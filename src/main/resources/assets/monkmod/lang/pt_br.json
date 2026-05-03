@@ -5,6 +5,7 @@
   "spell.monkmod.soul_collect.name": "Zen",
   "spell.monkmod.spiritual_absorption.name": "Absorção Espiritual",
   "spell.monkmod.occult_impaction.name": "Impacto Psíquico",
+  "spell.monkmod.triple_combo.name": "Combo Triplo",
   "spell.monkmod.spirit_transfer.name": "Transferência de Espírito",
   "spell.monkmod.ethereal_step.name": "Passo Etéreo",
   "spell.monkmod.throw_spirit_sphere.name": "Arremessar Esfera Espiritual",
@@ -13,6 +14,7 @@
   "spell.monkmod.soul_collect.description": "Concede instantaneamente o número máximo de Esferas Espirituais. Concede 5 esferas normalmente, ou 6 ao usar a Manopla Espiritual.",
   "spell.monkmod.spiritual_absorption.description": "Drena inimigos ao redor do alvo, causando dano baixo, curando o usuário e gerando 1 Esfera Espiritual por inimigo atingido.",
   "spell.monkmod.occult_impaction.description": "Consome 1 Esfera Espiritual e causa {splash_damage} - {damage} de dano aos alvos.\nConcede o efeito Chakra do Vigor por 4 segundos.",
+  "spell.monkmod.triple_combo.description": "Consome 1 Esfera Espiritual e executa 3 golpes consecutivos em cone frontal de 60° com alcance de 3 blocos. O dano total equivale a 1.6x o Dano de Ataque do usuário; o último golpe causa mais dano.",
   "spell.monkmod.spirit_transfer.description": "Consome 1 Esfera Espiritual e a arremessa em um aliado, curando aliados ao redor do alvo e concedendo Chakra do Vigor.",
   "spell.monkmod.ethereal_step.description": "Consome 2 Esferas Espirituais e teletransporta o usuário até 7 blocos à frente.\nConcede o efeito Concessão Espiritual por 4 segundos.",
   "spell.monkmod.throw_spirit_sphere.description": "Arremessa até 5 Esferas Espirituais, consumindo 1 Esfera Espiritual por arremesso.\nCada esfera causa {damage} de dano aos inimigos.",
@@ -30,11 +32,5 @@
   "effect.monkmod.spiritual_concession.description": "Aumenta o Dano de Ataque em 30% enquanto estiver ativo.",
 
   "itemGroup.monkmod.monge": "Monge",
-  "item.monkmod.spiritual_gauntlet": "Manopla Espiritual",
-  "item.monkmod.wooden_battle_staff": "Bastão de Batalha de Madeira",
-  "item.monkmod.stone_battle_staff": "Bastão de Batalha de Pedra",
-  "item.monkmod.iron_battle_staff": "Bastão de Batalha de Ferro",
-  "item.monkmod.golden_battle_staff": "Bastão de Batalha de Ouro",
-  "item.monkmod.diamond_battle_staff": "Bastão de Batalha de Diamante",
-  "item.monkmod.netherite_battle_staff": "Bastão de Batalha de Netherite"
+  "item.monkmod.spiritual_gauntlet": "Manopla Espiritual"
 }

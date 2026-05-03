@@ -5,6 +5,7 @@
   "spell.monkmod.soul_collect.name": "SOUL COLLECT",
   "spell.monkmod.spiritual_absorption.name": "Spiritual Absorption",
   "spell.monkmod.occult_impaction.name": "Psychic Impact",
+  "spell.monkmod.triple_combo.name": "Triple Combo",
   "spell.monkmod.spirit_transfer.name": "Spirit Transfer",
   "spell.monkmod.ethereal_step.name": "Ethereal Step",
   "spell.monkmod.throw_spirit_sphere.name": "Throw Spiritual Sphere",
@@ -13,6 +14,7 @@
   "spell.monkmod.soul_collect.description": "Instantly grants the maximum number of Spiritual Spheres. Grants 5 spheres normally, or 6 while using the Spiritual Gauntlet.",
   "spell.monkmod.spiritual_absorption.description": "Drains enemies around the target, dealing low damage, healing the caster, and generating 1 Spiritual Sphere per enemy hit.",
   "spell.monkmod.occult_impaction.description": "Consumes 1 Spiritual Sphere and deals {splash_damage} - {damage} damage to targets. Grants the Vigor Chakra effect for 4 seconds.",
+  "spell.monkmod.triple_combo.description": "Consumes 1 Spiritual Sphere and performs 3 consecutive hits in a 60° frontal cone with a 3-block range. Total damage equals 1.6x the user's Attack Damage; the final hit deals more damage.",
   "spell.monkmod.spirit_transfer.description": "Consumes 1 Spiritual Sphere and throws it at an ally, healing allies around the target and granting Vigor Chakra.",
   "spell.monkmod.ethereal_step.description": "Consumes 2 Spiritual Spheres and teleports the user up to 7 blocks forward. Grants the Spiritual Concession effect for 4 seconds.",
   "spell.monkmod.throw_spirit_sphere.description": "Throws up to 5 Spiritual Spheres, consuming 1 Spiritual Sphere per throw. Each sphere deals {damage} damage to enemies.",
@@ -30,11 +32,5 @@
   "effect.monkmod.spiritual_concession.description": "Increases Attack Damage by 30% while active.",
 
   "itemGroup.monkmod.monge": "Monk",
-  "item.monkmod.spiritual_gauntlet": "Spiritual Gauntlet",
-  "item.monkmod.wooden_battle_staff": "Wooden Battle Staff",
-  "item.monkmod.stone_battle_staff": "Stone Battle Staff",
-  "item.monkmod.iron_battle_staff": "Iron Battle Staff",
-  "item.monkmod.golden_battle_staff": "Golden Battle Staff",
-  "item.monkmod.diamond_battle_staff": "Diamond Battle Staff",
-  "item.monkmod.netherite_battle_staff": "Netherite Battle Staff"
+  "item.monkmod.spiritual_gauntlet": "Spiritual Gauntlet"
 }

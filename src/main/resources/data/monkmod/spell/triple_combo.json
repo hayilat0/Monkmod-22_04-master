@@ -1,0 +1,46 @@
+{
+  "school": "spell_power:arcane",
+  "range": 3.0,
+  "tier": 2,
+  "learn": {},
+  "active": {
+    "cast": {
+      "duration": 0.05,
+      "movement_speed": 0.85,
+      "animation": {
+        "id": "forcemaster_rpg:burstcrack_cast"
+      },
+      "sound": {
+        "id": "spell_engine:generic_arcane_casting",
+        "volume": 0.12
+      }
+    }
+  },
+  "release": {
+    "animation": {
+      "id": "monkmod:triple_combo_release"
+    },
+    "sound": {
+      "id": "forcemaster_rpg:knuckle_attack",
+      "volume": 0.5
+    }
+  },
+  "impacts": [
+    {
+      "action": {
+        "type": "CUSTOM",
+        "apply_to_caster": true,
+        "custom": {
+          "intent": "HARMFUL",
+          "handler": "monkmod:triple_combo"
+        }
+      }
+    }
+  ],
+  "cost": {
+    "exhaust": 0.2,
+    "cooldown": {
+      "duration": 5.0
+    }
+  }
+}

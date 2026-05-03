@@ -8,6 +8,7 @@ import net.gabriel.monk.event.MonkSphereCapEnforcer;
 import net.gabriel.monk.event.MonkVfxEvents;
 import net.gabriel.monk.network.EtherealStepVfxPayload;
 import net.gabriel.monk.spell.MonkCustomSpellImpact;
+import net.gabriel.monk.util.MonkDelayedTasks;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -28,7 +29,10 @@ public class Monkmod implements ModInitializer {
 
 		EtherealStepVfxPayload.register();
 
-		// ✅ NOVO: garante que o limite volta pra 5 sem a manopla
+		// Garante que o limite volta para 5 sem a manopla.
 		MonkSphereCapEnforcer.register();
+
+		// Permite executar golpes com pequeno intervalo entre eles.
+		MonkDelayedTasks.register();
 	}
 }

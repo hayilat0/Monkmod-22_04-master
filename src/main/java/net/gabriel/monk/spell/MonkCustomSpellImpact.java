@@ -27,6 +27,9 @@ public final class MonkCustomSpellImpact {
     public static final Identifier SPIRIT_TRANSFER =
             Identifier.of(Monkmod.MOD_ID, "spirit_transfer");
 
+    public static final Identifier TRIPLE_COMBO =
+            Identifier.of(Monkmod.MOD_ID, "triple_combo");
+
     public static void registerCustomImpacts() {
         SpellHandlers.registerCustomImpact(OCCULT_IMPACTION_EFFECTS, new OccultImpactionEffectsImpact());
         SpellHandlers.registerCustomImpact(THROW_SPIRIT_SPHERE, new ThrowSpiritSphereImpact());
@@ -35,6 +38,7 @@ public final class MonkCustomSpellImpact {
         SpellHandlers.registerCustomImpact(SOUL_COLLECT, new SoulCollectImpact());
         SpellHandlers.registerCustomImpact(SPIRITUAL_ABSORPTION, new SpiritualAbsorptionImpact());
         SpellHandlers.registerCustomImpact(SPIRIT_TRANSFER, new SpiritTransferImpact());
+        SpellHandlers.registerCustomImpact(TRIPLE_COMBO, new TripleComboImpact());
     }
 
     private MonkCustomSpellImpact() {

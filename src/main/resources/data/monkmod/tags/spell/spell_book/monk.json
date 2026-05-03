@@ -5,6 +5,10 @@
       "required": false
     },
     {
+      "id": "monkmod:triple_combo",
+      "required": false
+    },
+    {
       "id": "monkmod:spirit_transfer",
       "required": false
     },

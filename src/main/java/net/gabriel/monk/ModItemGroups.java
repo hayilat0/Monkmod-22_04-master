@@ -21,12 +21,6 @@ public final class ModItemGroups {
                     .entries((displayContext, entries) -> {
                         entries.add(Registries.ITEM.get(ModItems.MONK_SPELL_BOOK_ID));
                         entries.add(Registries.ITEM.get(ModItems.SPIRITUAL_GAUNTLET_ID));
-                        entries.add(Registries.ITEM.get(ModItems.WOODEN_BATTLE_STAFF_ID));
-                        entries.add(Registries.ITEM.get(ModItems.STONE_BATTLE_STAFF_ID));
-                        entries.add(Registries.ITEM.get(ModItems.IRON_BATTLE_STAFF_ID));
-                        entries.add(Registries.ITEM.get(ModItems.GOLDEN_BATTLE_STAFF_ID));
-                        entries.add(Registries.ITEM.get(ModItems.DIAMOND_BATTLE_STAFF_ID));
-                        entries.add(Registries.ITEM.get(ModItems.NETHERITE_BATTLE_STAFF_ID));
                     })
                     .build()
     );
