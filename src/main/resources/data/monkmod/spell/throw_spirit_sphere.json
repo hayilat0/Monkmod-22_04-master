@@ -19,7 +19,7 @@
           "particle_id": "spell_engine:magic_arcane_float",
           "shape": "WIDE_PIPE",
           "origin": "CENTER",
-          "count": 1.8,
+          "count": 1.7,
           "min_speed": 0.02,
           "max_speed": 0.06,
           "follow_entity": true,
