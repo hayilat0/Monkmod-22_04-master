@@ -1,8 +1,9 @@
 package net.gabriel.monk.spell;
 
-import net.fabricmc.fabric.api.networking.v1.PlayerLookup;
 import net.gabriel.monk.effect.ModEffects;
 import net.gabriel.monk.mixin.EntityIFramesAccessor;
+import net.gabriel.monk.network.TripleComboVfxNetworking;
+import net.gabriel.monk.particle.ModParticles;
 import net.gabriel.monk.util.MonkDelayedTasks;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
@@ -10,24 +11,21 @@ import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.passive.TameableEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.particle.ParticleTypes;
 import net.minecraft.registry.entry.RegistryEntry;
-import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.Box;
 import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.math.random.Random;
 import net.spell_engine.api.spell.Spell;
 import net.spell_engine.api.spell.event.SpellHandlers;
-import net.spell_engine.api.spell.fx.ParticleBatch;
-import net.spell_engine.fx.ParticleHelper;
 import net.spell_engine.internals.SpellHelper;
 import net.spell_power.api.SpellPower;
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashSet;
 import java.util.List;
 
 public final class TripleComboImpact implements SpellHandlers.CustomImpact {
@@ -55,9 +53,6 @@ public final class TripleComboImpact implements SpellHandlers.CustomImpact {
 
     private static final Identifier KNUCKLE_ATTACK_SOUND =
             Identifier.of("forcemaster_rpg", "knuckle_attack");
-
-    private static final long FIST_COLOR = 4289003775L;
-    private static final long FIST_COLOR_BRIGHT = 4291575039L;
 
     @Override
     public SpellHandlers.ImpactResult onSpellImpact(
@@ -99,10 +94,11 @@ public final class TripleComboImpact implements SpellHandlers.CustomImpact {
         float attackDamage = (float) caster.getAttributeValue(EntityAttributes.GENERIC_ATTACK_DAMAGE);
         float damage = attackDamage * HIT_DAMAGE_MULTIPLIERS[hitIndex];
 
-        List<LivingEntity> targets = findTargetsInCone(world, caster);
+        Vec3d forward = horizontalForward(caster);
+        List<LivingEntity> targets = findTargetsInCone(world, caster, forward);
 
         playPunchSound(world, caster, hitIndex);
-        spawnCasterPunchVfx(caster, hitIndex);
+        spawnMeteorRushVfx(world, caster, forward, hitIndex);
 
         for (LivingEntity victim : targets) {
             resetIFrames(victim);
@@ -110,13 +106,12 @@ public final class TripleComboImpact implements SpellHandlers.CustomImpact {
             DamageSource source = attackDamageSource(world, caster);
             victim.damage(source, damage);
 
-            spawnTargetImpactVfx(caster, victim, hitIndex);
+            spawnTargetImpactVfx(world, caster, victim, hitIndex);
         }
     }
 
-    private static List<LivingEntity> findTargetsInCone(ServerWorld world, LivingEntity caster) {
+    private static List<LivingEntity> findTargetsInCone(ServerWorld world, LivingEntity caster, Vec3d forward) {
         Vec3d origin = caster.getPos().add(0.0d, caster.getHeight() * 0.55d, 0.0d);
-        Vec3d forward = horizontalForward(caster);
 
         if (forward.lengthSquared() < 0.0001d) {
             return List.of();
@@ -167,135 +162,157 @@ public final class TripleComboImpact implements SpellHandlers.CustomImpact {
         return result;
     }
 
-    private static void spawnCasterPunchVfx(LivingEntity caster, int hitIndex) {
-        float scale = switch (hitIndex) {
-            case 0 -> 0.85f;
-            case 1 -> 0.85f;
-            default -> 1.10f;
+    private static void spawnMeteorRushVfx(ServerWorld world, LivingEntity caster, Vec3d forward, int hitIndex) {
+        if (forward.lengthSquared() < 0.0001d) {
+            return;
+        }
+
+        Vec3d start = caster.getPos()
+                .add(0.0d, caster.getHeight() * 0.58d, 0.0d)
+                .add(forward.multiply(0.45d));
+
+        Vec3d end = start.add(forward.multiply(RANGE));
+
+        boolean sent = TripleComboVfxNetworking.sendMeteorRush(caster, start, end, hitIndex);
+
+        if (!sent) {
+            spawnServerFallbackMeteorRush(world, start, end, hitIndex);
+        }
+    }
+
+    private static void spawnTargetImpactVfx(ServerWorld world, LivingEntity caster, LivingEntity victim, int hitIndex) {
+        Vec3d impactPos = victim.getPos().add(0.0d, victim.getHeight() * 0.55d, 0.0d);
+
+        boolean sent = TripleComboVfxNetworking.sendImpact(caster, victim, impactPos, hitIndex);
+
+        if (!sent) {
+            spawnServerFallbackImpact(world, impactPos, hitIndex);
+        }
+    }
+
+    private static void spawnServerFallbackMeteorRush(ServerWorld world, Vec3d start, Vec3d end, int hitIndex) {
+        Vec3d delta = end.subtract(start);
+
+        if (delta.lengthSquared() < 0.0001d) {
+            return;
+        }
+
+        Vec3d direction = delta.normalize();
+        Vec3d right = new Vec3d(-direction.z, 0.0d, direction.x);
+
+        if (right.lengthSquared() < 0.0001d) {
+            right = new Vec3d(1.0d, 0.0d, 0.0d);
+        } else {
+            right = right.normalize();
+        }
+
+        Random random = world.random;
+
+        int lines = switch (hitIndex) {
+            case 0 -> 5;
+            case 1 -> 7;
+            default -> 12;
         };
 
-        long color = hitIndex == 2 ? FIST_COLOR_BRIGHT : FIST_COLOR;
+        int pointsPerLine = hitIndex == 2 ? 9 : 7;
+        double spread = hitIndex == 2 ? 0.85d : 0.55d;
 
-        List<ParticleBatch> batches = new ArrayList<>();
+        for (int line = 0; line < lines; line++) {
+            double side = (random.nextDouble() - random.nextDouble()) * spread;
+            double vertical = (random.nextDouble() - random.nextDouble()) * spread * 0.35d;
 
-        ParticleBatch fist = new ParticleBatch(
-                "spell_engine:sign_fist",
-                ParticleBatch.Shape.LINE_VERTICAL,
-                ParticleBatch.Origin.CENTER,
-                1.0f,
-                0.42f,
-                0.42f
-        )
-                .scale(scale)
-                .color(color)
-                .followEntity(true);
+            Vec3d lineEnd = end.add(right.multiply(side)).add(0.0d, vertical, 0.0d);
 
-        batches.add(fist);
+            for (int i = 0; i < pointsPerLine; i++) {
+                double t = i / (double) Math.max(1, pointsPerLine - 1);
+                Vec3d p = start.lerp(lineEnd, t);
+
+                Vec3d velocity = direction.multiply(hitIndex == 2 ? 0.07d : 0.04d);
+
+                world.spawnParticles(
+                        ModParticles.SPIRITUAL_METEOR,
+                        p.x,
+                        p.y,
+                        p.z,
+                        1,
+                        0.0d,
+                        0.0d,
+                        0.0d,
+                        0.0d
+                );
+
+                if (i == 0 || i == 1) {
+                    world.spawnParticles(
+                            ParticleTypes.END_ROD,
+                            p.x,
+                            p.y,
+                            p.z,
+                            1,
+                            velocity.x * 0.25d,
+                            0.01d,
+                            velocity.z * 0.25d,
+                            0.0d
+                    );
+                }
+            }
+        }
 
         if (hitIndex == 2) {
-            ParticleBatch burst = new ParticleBatch(
-                    "spell_engine:area_effect_658",
-                    ParticleBatch.Shape.SPHERE,
-                    ParticleBatch.Origin.CENTER,
-                    1.0f,
-                    0.0f,
-                    0.0f
-            )
-                    .scale(0.60f)
-                    .extent(0.35f)
-                    .color(color)
-                    .followEntity(true);
-
-            batches.add(burst);
+            world.spawnParticles(
+                    ParticleTypes.ELECTRIC_SPARK,
+                    end.x,
+                    end.y,
+                    end.z,
+                    12,
+                    0.35d,
+                    0.25d,
+                    0.35d,
+                    0.04d
+            );
         }
-
-        sendBatches(caster, batches.toArray(new ParticleBatch[0]));
     }
 
-    private static void spawnTargetImpactVfx(LivingEntity caster, LivingEntity victim, int hitIndex) {
-        float fistScale = switch (hitIndex) {
-            case 0 -> 0.90f;
-            case 1 -> 0.90f;
-            default -> 1.20f;
-        };
+    private static void spawnServerFallbackImpact(ServerWorld world, Vec3d impactPos, int hitIndex) {
+        int count = hitIndex == 2 ? 30 : 18;
+        double spread = hitIndex == 2 ? 0.45d : 0.28d;
 
-        float ringScale = switch (hitIndex) {
-            case 0 -> 0.45f;
-            case 1 -> 0.45f;
-            default -> 0.80f;
-        };
+        world.spawnParticles(
+                ModParticles.SPIRITUAL_METEOR,
+                impactPos.x,
+                impactPos.y,
+                impactPos.z,
+                count,
+                spread,
+                spread * 0.65d,
+                spread,
+                hitIndex == 2 ? 0.08d : 0.05d
+        );
 
-        long color = hitIndex == 2 ? FIST_COLOR_BRIGHT : FIST_COLOR;
-
-        List<ParticleBatch> batches = new ArrayList<>();
-
-        ParticleBatch fist = new ParticleBatch(
-                "spell_engine:sign_fist",
-                ParticleBatch.Shape.LINE_VERTICAL,
-                ParticleBatch.Origin.CENTER,
-                1.0f,
-                0.50f,
-                0.50f
-        )
-                .scale(fistScale)
-                .color(color);
-
-        batches.add(fist);
-
-        ParticleBatch impactRing = new ParticleBatch(
-                "spell_engine:area_effect_658",
-                ParticleBatch.Shape.SPHERE,
-                ParticleBatch.Origin.CENTER,
-                1.0f,
-                0.0f,
-                0.0f
-        )
-                .scale(ringScale)
-                .extent(0.35f + ringScale * 0.25f)
-                .color(color);
-
-        batches.add(impactRing);
+        world.spawnParticles(
+                ParticleTypes.END_ROD,
+                impactPos.x,
+                impactPos.y,
+                impactPos.z,
+                hitIndex == 2 ? 12 : 5,
+                spread * 0.8d,
+                spread * 0.55d,
+                spread * 0.8d,
+                0.04d
+        );
 
         if (hitIndex == 2) {
-            ParticleBatch secondFist = new ParticleBatch(
-                    "spell_engine:sign_fist",
-                    ParticleBatch.Shape.LINE_VERTICAL,
-                    ParticleBatch.Origin.CENTER,
-                    1.0f,
-                    0.58f,
-                    0.58f
-            )
-                    .scale(0.95f)
-                    .color(color);
-
-            batches.add(secondFist);
+            world.spawnParticles(
+                    ParticleTypes.ELECTRIC_SPARK,
+                    impactPos.x,
+                    impactPos.y,
+                    impactPos.z,
+                    18,
+                    0.25d,
+                    0.22d,
+                    0.25d,
+                    0.055d
+            );
         }
-
-        sendBatchesFromCasterToTarget(caster, victim, batches.toArray(new ParticleBatch[0]));
-    }
-
-    private static void sendBatches(LivingEntity anchor, ParticleBatch[] batches) {
-        Collection<ServerPlayerEntity> viewers = new HashSet<>(PlayerLookup.tracking(anchor));
-
-        if (anchor instanceof ServerPlayerEntity serverPlayer) {
-            viewers.add(serverPlayer);
-        }
-
-        ParticleHelper.sendBatches(anchor, batches, 1.0f, viewers);
-    }
-
-    private static void sendBatchesFromCasterToTarget(LivingEntity caster, LivingEntity target, ParticleBatch[] batches) {
-        Collection<ServerPlayerEntity> viewers = new HashSet<>(PlayerLookup.tracking(target));
-
-        if (caster instanceof ServerPlayerEntity serverCaster) {
-            viewers.add(serverCaster);
-        }
-
-        if (target instanceof ServerPlayerEntity serverTarget) {
-            viewers.add(serverTarget);
-        }
-
-        ParticleHelper.sendBatches(target, batches, 1.0f, viewers);
     }
 
     private static Vec3d horizontalForward(LivingEntity entity) {
