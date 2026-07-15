@@ -11,6 +11,13 @@ base {
 }
 
 repositories {
+	mavenCentral()
+
+	maven {
+		name = "Fabric"
+		url = "https://maven.fabricmc.net/"
+	}
+
 	// Modrinth Maven
 	maven {
 		name = "Modrinth"
@@ -26,7 +33,7 @@ repositories {
 		url = "https://maven.ladysnake.org/releases"
 	}
 
-	// CurseMaven (pra puxar mods do CurseForge só no dev)
+	// CurseMaven (somente para mods de teste no ambiente de desenvolvimento)
 	maven {
 		name = "CurseMaven"
 		url = "https://www.cursemaven.com"
@@ -40,15 +47,13 @@ fabricApi {
 }
 
 dependencies {
-	// To change the versions see the gradle.properties file
+	// Minecraft/Fabric
 	minecraft "com.mojang:minecraft:${project.minecraft_version}"
 	mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
 	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
-
-	// Fabric API. This is technically optional, but you probably want it anyway.
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}"
 
-	// ==== Spell Engine stack (Modrinth Maven) ====
+	// Spell Engine stack
 	modImplementation "maven.modrinth:spell-engine:${project.spell_engine_version}"
 	modImplementation "maven.modrinth:spell-power:${project.spell_power_version}"
 	modImplementation "maven.modrinth:tiny-config:${project.tiny_config_version}"
@@ -56,33 +61,31 @@ dependencies {
 	modImplementation "maven.modrinth:cloth-config:${project.cloth_config_version}"
 	modImplementation "maven.modrinth:playeranimator:${project.player_animator_version}"
 
-	// ==== Forcemaster e deps dele ====
+	// Forcemaster e dependências dele
 	modImplementation "maven.modrinth:azurelib-armor:${project.azurelib_armor_version}"
 	modImplementation "maven.modrinth:more-rpg-library:${project.more_rpg_library_version}"
 	modImplementation "maven.modrinth:forcemaster-rpg-class:${project.forcemaster_version}"
 
-	// ==== DEV ONLY (runtime) ====
-	// Better Combat - só pra testar no ambiente de dev (não é dependência do mod)
-	modRuntimeOnly "maven.modrinth:better-combat:${project.better_combat_version}"
-
-	// >>> ADICIONADO (DEV ONLY): Sodium (client performance mod, não vira dependência)
-	modRuntimeOnly "maven.modrinth:sodium:${project.sodium_version}"
-	// <<< ADICIONADO
-
-	// ==== Opcional (dev env) ====
-	modRuntimeOnly "io.github.llamalad7:mixinextras-fabric:${project.mixinextras_version}"
-
-	// Cardinal Components API (resolve o erro do Trinkets)
+	// Cardinal Components API (resolve dependências usadas pelo Trinkets)
 	modImplementation "org.ladysnake.cardinal-components-api:cardinal-components-base:${project.cca_version}"
 	modImplementation "org.ladysnake.cardinal-components-api:cardinal-components-entity:${project.cca_version}"
 
-	// DEV ONLY: Target Dummy + dependência (Moonlight/“Selene”)
-	// Target Dummy (MmmMmmMmmMmm)
+	// MixinExtras no ambiente de desenvolvimento
+	modRuntimeOnly "io.github.llamalad7:mixinextras-fabric:${project.mixinextras_version}"
+
+	// DEV ONLY: Better Combat para testar combate no ambiente de desenvolvimento.
+	// Não vira dependência obrigatória do Monkmod.
+	modRuntimeOnly "maven.modrinth:better-combat:${project.better_combat_version}"
+
+	// DEV ONLY: Sodium para melhorar FPS no client de desenvolvimento.
+	// Não vira dependência obrigatória do Monkmod.
+	modRuntimeOnly "maven.modrinth:sodium:${project.sodium_version}"
+
+	// DEV ONLY: Target Dummy + Moonlight/Selene.
 	modRuntimeOnly "curse.maven:mmmmmmmmmmmm-225738:7207850"
-	// Moonlight Lib (Selene) - dependência do Dummy
 	modRuntimeOnly "curse.maven:selene-499980:7441362"
 
-	// DEV ONLY (opcional): Damage Numbers (mostrar dano em qualquer entidade)
+	// DEV ONLY opcional: Damage Numbers.
 	// modRuntimeOnly "curse.maven:damagenumbers-1022853:5475552"
 }
 
@@ -121,6 +124,6 @@ publishing {
 	}
 
 	repositories {
-		// você pode configurar repositórios de publicação aqui se quiser
+		// Configure repositórios de publicação aqui, se necessário.
 	}
 }
